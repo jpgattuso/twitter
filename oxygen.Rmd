@@ -1,0 +1,21 @@
+---
+title: "Oxygen story"
+author: "Jean-Pierre Gattuso"
+date: "6/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rtweet)
+```
+
+
+```{r analysis}
+if (exists("dat") == FALSE) {
+  dat <- search_tweets("#worldoceanday oxygen", n = 10000, include_rts = FALSE)
+}
+```
+
+During the period `r format(min(dat$created_at), "%F")` to `r format(max(dat$created_at), "%F")`, there were `r nrow(dat)` tweets with "WorldOceanDay" and "oxygen" from `r length(unique(dat$user_id))` users having up to `r max(dat$followers_count)` followers.
+
